@@ -1,0 +1,32 @@
+# =============================================================================
+# Leaner env: install only the conda-safe core packages here.
+# Heavy Bioconductor packages get installed via R inside the env afterwards.
+# Use this when bioconductor.org curl downloads hang during conda solving.
+# =============================================================================
+name: r_microbiome
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - r-base=4.3
+  - r-tidyverse
+  - r-data.table
+  - r-vegan
+  - r-igraph
+  - r-bipartite
+  - r-compositions
+  - r-pheatmap
+  - r-ggrepel
+  - r-rmarkdown
+  - r-knitr
+  - r-dt
+  - r-htmltools
+  - r-yaml
+  - r-optparse
+  - r-cluster
+  - r-flashclust
+  - r-fastcluster
+  - r-wgcna
+  - r-biocmanager           # used to install the rest from inside R
+  - pandoc

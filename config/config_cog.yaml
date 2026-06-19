@@ -1,0 +1,73 @@
+# =============================================================================
+# Stratified HUMAnN Co-Expression Pipeline — Configuration
+# =============================================================================
+
+# --- INPUT FILES ------------------------------------------------------------
+input_csv: "data/Specie_stratified_cog_updated.csv"
+metadata_tsv: "metadata/sample_metadata.tsv"
+
+# Column in metadata that identifies treatment / group for DIABLO + Procrustes
+group_column: "treatment"
+
+# Optional secondary metadata columns to correlate with WGCNA module eigengenes
+# (comma-separated, leave empty list to skip)
+continuous_traits: []
+
+# --- DELIMITERS -------------------------------------------------------------
+# Input CSV separator (typically "," or "\t")
+input_sep: ","
+# Stratification separator inside feature names (HUMAnN default: "|")
+stratify_sep: "|"
+
+# --- PREVALENCE FILTERING ---------------------------------------------------
+# Minimum sample count where feature must exceed min_value
+min_samples: 3
+min_value: 1.0e-6
+
+# --- CLR TRANSFORM ----------------------------------------------------------
+# Pseudocount added before log to handle zeros (use small fraction of min nonzero)
+pseudocount_strategy: "half_min"   # options: "half_min", "fixed"
+pseudocount_fixed: 1.0e-7          # used only if strategy == "fixed"
+
+# --- WGCNA PARAMETERS -------------------------------------------------------
+wgcna:
+  power: "auto"                    # "auto" picks soft threshold, or set integer 1-20
+  min_module_size: 20
+  merge_cut_height: 0.25
+  network_type: "signed"           # "signed", "unsigned", "signed hybrid"
+
+# --- DIABLO PARAMETERS ------------------------------------------------------
+diablo:
+  ncomp: 2
+  design_value: 0.8                # block correlation in design matrix (0.1-1.0)
+  cutoff_circos: 0.7
+
+# --- BIPARTITE NETWORK ------------------------------------------------------
+bipartite:
+  top_n_taxa: 25                   # restrict plot to top N taxa by total abundance
+  top_n_functions: 15              # restrict to top N functions
+
+# --- PROCRUSTES TEST --------------------------------------------------------
+procrustes:
+  permutations: 999
+
+# --- KEGG PATHWAY ENRICHMENT ------------------------------------------------
+# COG features are not KO IDs; the KEGG enrichment script will skip gracefully.
+kegg:
+  top_n_paths_per_module: 10
+  pval_cutoff: 0.05
+
+# --- ANCOM-BC2 DIFFERENTIAL ABUNDANCE ---------------------------------------
+ancombc:
+  fdr_cutoff: 0.05
+  lfc_cutoff: 1.0
+  prv_cut: 0.1
+
+# --- TOP FEATURES SUMMARY ---------------------------------------------------
+top_n_features: 15
+
+# --- OUTPUT DIRECTORY -------------------------------------------------------
+output_dir: "results"
+
+# --- COMPUTE ---------------------------------------------------------------
+threads_default: 4

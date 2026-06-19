@@ -1,0 +1,48 @@
+cff-version: 1.2.0
+message: "If you use this pipeline, please cite both the companion paper and the software release."
+type: software
+title: "stratified-humann-coexpression: a Snakemake workflow for species-stratified functional metagenomic analysis of Nanopore rumen metagenomes"
+abstract: >
+  A Snakemake workflow for species-stratified functional co-expression
+  analysis of long-read Nanopore rumen metagenomes. Integrates HUMAnN3
+  species-stratified KEGG Orthology profiling, WGCNA coexpression module
+  discovery, ANCOM-BC2 bias-corrected compositional differential abundance
+  testing, PERMANOVA on Aitchison distances, KEGG pathway abundance and
+  enrichment analysis, MetaCyc pathway analysis with LEfSe-style LDA
+  biomarker discovery, stratified gene-to-taxon contribution analysis, and
+  CAZyme cross-validation. Generalizable to any two-group rumen functional
+  metagenomics comparison.
+authors:
+  - family-names: Taiwo
+    given-names: Godstime
+    affiliation: "Department of Animal and Range Sciences, New Mexico State University, Las Cruces, New Mexico, USA"
+    email: gtaiwo@nmsu.edu
+    orcid: "https://orcid.org/0009-0000-0000-0000"
+version: 1.0.0
+date-released: "2026-06-19"
+license: MIT
+repository-code: "https://github.com/Godstime2024/stratified-humann-coexpression"
+url: "https://github.com/Godstime2024/stratified-humann-coexpression"
+keywords:
+  - snakemake
+  - metagenomics
+  - nanopore
+  - humann3
+  - rumen
+  - methanogenesis
+  - wood-ljungdahl
+  - ancom-bc
+  - wgcna
+  - lefse
+  - microbiome
+  - cattle
+  - saccharomyces-cerevisiae-fermentation-product
+preferred-citation:
+  type: article
+  title: "Saccharomyces cerevisiae fermentation product redirects rumen hydrogen disposal from methanogenesis to Wood-Ljungdahl acetogenesis in cattle"
+  authors:
+    - family-names: Taiwo
+      given-names: Godstime
+  journal: "mSystems"
+  year: 2026
+  notes: "In preparation"

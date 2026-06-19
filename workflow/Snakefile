@@ -1,0 +1,25 @@
+# =============================================================================
+# Stratified HUMAnN Co-Expression Pipeline — main Snakefile
+# =============================================================================
+
+import os
+from snakemake.utils import min_version
+min_version("7.0")
+
+configfile: "config/config.yaml"
+
+OUTDIR = config["output_dir"]
+
+# -----------------------------------------------------------------------------
+# Target: produce the final HTML report (depends on all upstream outputs)
+# -----------------------------------------------------------------------------
+rule all:
+    input:
+        f"{OUTDIR}/report.html"
+
+# -----------------------------------------------------------------------------
+# Includes
+# -----------------------------------------------------------------------------
+include: "rules/preprocess.smk"
+include: "rules/analysis.smk"
+include: "rules/report.smk"

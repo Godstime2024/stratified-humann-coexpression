@@ -1,0 +1,119 @@
+# =============================================================================
+# .gitignore for stratified-humann-coexpression Snakemake pipeline
+# =============================================================================
+
+# --- Pipeline internal state ---
+.snakemake/
+.kegg_cache/
+.rmarkdown_intermediates/
+
+# --- Large input data (not appropriate for git/zenodo source archive) ---
+data/
+*.csv
+*.tsv.gz
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.bam
+*.bai
+*.sam
+
+# --- Pipeline outputs (reproducible from the pipeline) ---
+results/
+results_ko/
+results_cog/
+
+# --- Conda / venv ---
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+.conda/
+
+# --- R artifacts ---
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# --- IDE / editor ---
+.vscode/
+.idea/
+*.swp
+*~
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- Manuscript drafts and PDFs (belong in a separate manuscript repo) ---
+*.docx
+*.pdf
+*.tex
+*.aux
+*.log
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+
+# --- Slurm / HPC logs ---
+slurm-*.out
+*.log
+logs/
+
+# --- Backup files ---
+*.bak
+*.tmp
+*.orig
+
+# --- Manuscript-specific helper scripts (not part of the pipeline tool itself) ---
+# These scripts manipulate Dr. YUN.docx and are paper-specific, not pipeline-relevant
+workflow/scripts/_*.py
+workflow/scripts/_*.R
+workflow/scripts/add_paper*.py
+workflow/scripts/add_taxonomy_methods.py
+workflow/scripts/add_remaining_supp_figures.py
+workflow/scripts/add_intro_and_method_citations.py
+workflow/scripts/add_figure_citations.py
+workflow/scripts/add_references_section.py
+workflow/scripts/append_paper*.py
+workflow/scripts/build_paper*.py
+workflow/scripts/build_papers.py
+workflow/scripts/expand_*.py
+workflow/scripts/fix_citation_cleanup.py
+workflow/scripts/fix_figure_sequence.py
+workflow/scripts/fix_paper1_tables_and_heading.py
+workflow/scripts/improve_*.py
+workflow/scripts/paper1_audit.py
+workflow/scripts/paper1_final_polish.py
+workflow/scripts/renumber_*.py
+workflow/scripts/restructure_*.py
+workflow/scripts/rewrite_*.py
+workflow/scripts/split_main_supp_figures.py
+workflow/scripts/swap_figures.py
+workflow/scripts/tighten_*.py
+workflow/scripts/update_paper*.py
+workflow/scripts/update_title.py
+
+# --- PDF extraction artifacts and external paper texts ---
+workflow/lai_*.txt
+workflow/*_extracted.txt
+
+# --- Figures extracted from user's Word doc (not pipeline outputs) ---
+workflow/figures/existing/
+
+# --- Allow specific files we DO want to keep ---
+!metadata/sample_metadata.tsv
+!config/*.yaml
+!workflow/envs/*.yaml
+!workflow/figures/.gitkeep
+!.gitignore
+!LICENSE
+!README.md
+!CITATION.cff

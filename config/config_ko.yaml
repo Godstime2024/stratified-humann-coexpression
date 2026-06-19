@@ -1,0 +1,78 @@
+# =============================================================================
+# KO-level co-expression analysis — config
+# Use with: snakemake --configfile config/config_ko.yaml --cores 4 --use-conda
+# =============================================================================
+
+# --- INPUT FILES ------------------------------------------------------------
+# Uses the strict-normalized version. Each sample's stratified rows sum to 1.0
+# and each sample's unstratified rows sum to 1.0 (independently). Audit trail
+# is at data/Specie_stratified_ko_audit.tsv
+input_csv: "data/Specie_stratified_ko_normalized.csv"
+metadata_tsv: "metadata/sample_metadata.tsv"
+
+# Column in metadata that identifies treatment / group
+group_column: "treatment"
+continuous_traits: []
+
+# --- DELIMITERS -------------------------------------------------------------
+input_sep: ","
+stratify_sep: "|"
+
+# --- PREVALENCE FILTERING ---------------------------------------------------
+# KO data is sparser per feature than COG. Same threshold remains appropriate,
+# but consider raising to min_samples = 4 if downstream features look too noisy.
+min_samples: 3
+min_value: 1.0e-6
+
+# --- CLR TRANSFORM ----------------------------------------------------------
+pseudocount_strategy: "half_min"
+pseudocount_fixed: 1.0e-7
+
+# --- WGCNA PARAMETERS -------------------------------------------------------
+# With ~6,500 KO features, WGCNA modules will now be meaningful.
+# minModuleSize = 30 keeps modules focused; merge_cut_height = 0.25 standard.
+wgcna:
+  power: "auto"
+  min_module_size: 30
+  merge_cut_height: 0.25
+  network_type: "signed"
+
+# --- DIABLO PARAMETERS ------------------------------------------------------
+# Larger feature space → can afford more components for taxa+functions blocks
+diablo:
+  ncomp: 2
+  design_value: 0.8
+  cutoff_circos: 0.7
+
+# --- BIPARTITE NETWORK ------------------------------------------------------
+# With 6,000+ functions, visualize top contributors only
+bipartite:
+  top_n_taxa: 25
+  top_n_functions: 20
+
+# --- PROCRUSTES TEST --------------------------------------------------------
+procrustes:
+  permutations: 999
+
+# --- KEGG PATHWAY ENRICHMENT ------------------------------------------------
+# Per-module pathway enrichment using KEGGREST + clusterProfiler.
+# KO-to-pathway mapping is cached after first download in .kegg_cache/
+kegg:
+  top_n_paths_per_module: 10
+  pval_cutoff: 0.05
+
+# --- ANCOM-BC2 DIFFERENTIAL ABUNDANCE ---------------------------------------
+ancombc:
+  fdr_cutoff: 0.05
+  lfc_cutoff: 1.0
+  prv_cut: 0.1     # prevalence cutoff inside ANCOM-BC2 itself
+
+# --- TOP FEATURES SUMMARY ---------------------------------------------------
+# How many top features to extract per analysis (modules, pathways, KOs, taxa)
+top_n_features: 15
+
+# --- OUTPUT DIRECTORY (separate from COG run) -------------------------------
+output_dir: "results_ko"
+
+# --- COMPUTE ---------------------------------------------------------------
+threads_default: 4
