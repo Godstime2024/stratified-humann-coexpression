@@ -77,6 +77,7 @@ logs/
 workflow/scripts/_*.py
 workflow/scripts/_*.R
 workflow/scripts/add_paper*.py
+workflow/scripts/add_zenodo*.py
 workflow/scripts/add_taxonomy_methods.py
 workflow/scripts/add_remaining_supp_figures.py
 workflow/scripts/add_intro_and_method_citations.py

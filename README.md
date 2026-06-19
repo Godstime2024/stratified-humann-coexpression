@@ -111,6 +111,33 @@ SAMPLE_02    SCFP         A02
 | HTML report (R Markdown) | `workflow/report/report.Rmd` |
 | Paper figure generation | `workflow/scripts/make_paper_figures.py` |
 
+## Metatranscriptomics support
+
+The pipeline accepts HUMAnN3 metatranscriptomics (RNA) output directly. Most
+downstream steps (ANCOM-BC2, WGCNA, PERMANOVA, KEGG pathway analysis, MetaCyc
+LDA, stratified gene-to-taxon contribution) are interpretation neutral and
+work identically on RNA-derived stratified KO matrices. The interpretive shift
+is that RNA captures actively expressed function while DNA captures coding
+potential.
+
+Three recommendations for RNA users:
+
+1. **Paired DNA + RNA samples.** If you sequenced both DNA and RNA from the
+   same biological samples, use HUMAnN3's `humann_renorm_table` utility to
+   compute expression ratios (RNA divided by DNA) before feeding the matrix
+   into this pipeline. The CLR transform applied during preprocessing assumes
+   compositional input, which both raw RNA abundance and expression ratios
+   satisfy.
+2. **Prevalence filter.** Raise `min_samples` from `3` to `4` or `5` in your
+   config to compensate for the higher zero count typical of RNA libraries.
+3. **Skip DNA-only cross-checks.** The AMR and bacteriocin cross-check rules
+   require assembled DNA contigs and will not produce meaningful results on
+   RNA. Disable them via the `rules` section of your config.
+
+The Kraken2 taxonomic profiling step assumes DNA input. If you only have RNA,
+either pair it with a DNA Kraken2 profile from the same samples or skip the
+taxonomic LEfSe step.
+
 ## Run on HPC (SLURM)
 
 ```bash
