@@ -17,7 +17,7 @@ authors:
     given-names: Godstime
     affiliation: "Department of Animal and Range Sciences, New Mexico State University, Las Cruces, New Mexico, USA"
     email: gtaiwo@nmsu.edu
-    orcid: "https://orcid.org/0009-0000-0000-0000"
+    orcid: "https://orcid.org/0000-0003-0023-1442"
 version: 1.0.0
 date-released: "2026-06-19"
 license: MIT
@@ -36,13 +36,4 @@ keywords:
   - lefse
   - microbiome
   - cattle
-  - saccharomyces-cerevisiae-fermentation-product
-preferred-citation:
-  type: article
-  title: "Saccharomyces cerevisiae fermentation product redirects rumen hydrogen disposal from methanogenesis to Wood-Ljungdahl acetogenesis in cattle"
-  authors:
-    - family-names: Taiwo
-      given-names: Godstime
-  journal: "mSystems"
-  year: 2026
-  notes: "In preparation"
+  - saccharomyces-cerevisiae
