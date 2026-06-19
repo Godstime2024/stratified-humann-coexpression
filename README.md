@@ -25,7 +25,7 @@ pipeline release:
 
 > Taiwo G. 2026. stratified-humann-coexpression: a Snakemake workflow for
 > species-stratified functional metagenomic analysis of Nanopore rumen
-> metagenomes (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
+> metagenomes (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.20766726
 
 ## Quick start
 
